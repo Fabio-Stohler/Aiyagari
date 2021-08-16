@@ -65,7 +65,7 @@ KD    = Kdemand.(Rgrid)    # calculate capital demand for these rates
 ExD   = ExcessDemand.(KD)  # calculate excess demand for these amounts of capital
 
 
-## 5. Find equilibrium
+## 5. Find equilibrium using rootfinding
 starttime = time();
 Rstar_Aiyagari  = rate(fzero(ExcessDemand,Kdemand(1/par.β-1.001)));
 total = time() - starttime;
