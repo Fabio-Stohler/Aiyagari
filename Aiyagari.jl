@@ -76,7 +76,7 @@ figure4 = plot(ExD+KD,Rgrid,label="Supply of Funds");
 plot!(KD,Rgrid,linecolor = :black, label="Demand for funds");
 plot!([mpar.mink, mpar.maxk],[Rstar_Aiyagari, Rstar_Aiyagari], linecolor = :black, linestyle = :dot, label = "Equilibrium Rate", legend = :bottomright);
 xlabel!("Funds");
-ylabel!("interest rate");
+ylabel!("Interest rate");
 display(figure4)
 
 
