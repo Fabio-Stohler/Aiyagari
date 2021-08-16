@@ -21,9 +21,9 @@ function Young(kprime,gri,mpar,Π)
     Γ  = YoungSmall(kprime,gri,mpar,Π)
     eigdecomp = eigen(Γ')
     values = findall(isapprox.(eigdecomp.values,1.0,atol=1.0e-5))
+    # Find one eigenvector that has the nearest eigenvalue to 1
     values_ind = argmin(abs.(1.0 .- eigdecomp.values[values]))
     x  = real(eigdecomp.vectors[:,values[values_ind]])   # Solve $x* = x* \Gamma$
-    # How do we prevent more than one eigenvalue from appearing?
     StDist = x./sum(x)        # Normalize Eigenvector to sum(x)=1
     return Γ, StDist
 end

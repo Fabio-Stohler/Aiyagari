@@ -19,8 +19,8 @@ mpar = NumericalParameters();
     r = 0
     γ = 3 # Coefficient of relative risk aversion
     β = 0.96 # Discount factor
-    α = 0.36 # Capital Share (for Exercise 5)
-    δ = 0.1 # Depreciation rate (for Exercise 5)
+    α = 0.36 # Capital Share
+    δ = 0.1 # Depreciation rate
     b = mpar.mink # borrowing limit
 end
 par = EconomicParameters();
@@ -67,7 +67,7 @@ ExD   = ExcessDemand.(KD)  # calculate excess demand for these amounts of capita
 
 ## 5. Find equilibrium
 starttime = time();
-Rstar_Aiyagari  = rate(fzero(ExcessDemand,Kdemand(0.04))); # find equilibrium amount of capital (and corresponding rate)
+Rstar_Aiyagari  = rate(fzero(ExcessDemand,Kdemand(1/par.β-1.001)));
 total = time() - starttime;
 
 
