@@ -10,7 +10,7 @@ cd("C:/Users/fasto/Dropbox/Desktop/Computational Macro/Julia/Aiyagari/")
     nk = 100        # Number of points on the asset grid
     nz = 7          # Number of points on the log-productivity grid
     crit = 1.0e-8   # Numerical precision
-    maxk = 15       # Maximum assets
+    maxk = 30       # Maximum assets (ensure large enough!)
     mink = 0        # Minimum assets (equal to borrowing limit)
 end
 mpar = NumericalParameters();
@@ -70,14 +70,21 @@ starttime = time();
 Rstar_Aiyagari  = rate(fzero(ExcessDemand,Kdemand(1/par.β-1.001)));
 total = time() - starttime;
 
+# Given the equilibrium interest rate, get the distribution
+K, kprime, marginal_k, StDist, Γ, Cold = K_Agg(Rstar_Aiyagari,wage(Rstar_Aiyagari),par,mpar,Π,meshes,gri)
+figure1 = plot(gri.k, marginal_k)
+xlabel!("Assets")
+ylabel!("Share of households")
+display(figure1)
+
 
 ## 6. Plot
-figure4 = plot(ExD+KD,Rgrid,label="Supply of Funds");
+figure2 = plot(ExD+KD,Rgrid,label="Supply of Funds");
 plot!(KD,Rgrid,linecolor = :black, label="Demand for funds");
 plot!([mpar.mink, mpar.maxk],[Rstar_Aiyagari, Rstar_Aiyagari], linecolor = :black, linestyle = :dot, label = "Equilibrium Rate", legend = :bottomright);
 xlabel!("Funds");
 ylabel!("Interest rate");
-display(figure4)
+display(figure2)
 
 
 ## 7. Prints
