@@ -60,6 +60,7 @@ wage(K)         = (1-par.α)*(K/N)^(par.α)               # Calculate the wage r
 ExcessDemand(K) = K_Agg(rate(K),wage(K),par,mpar,Π,meshes,gri)[1] .- K           # Calculate the difference between capital supply and demand for wages and returns given by assumed capital demand
 
 
+# Supply and demand graph
 Rgrid = [0.00:.0015:(1/par.β-1.0005);]   # a grid for interest rates for plotting
 KD    = Kdemand.(Rgrid)    # calculate capital demand for these rates
 ExD   = ExcessDemand.(KD)  # calculate excess demand for these amounts of capital
@@ -70,11 +71,12 @@ starttime = time();
 Rstar_Aiyagari  = rate(fzero(ExcessDemand,Kdemand(1/par.β-1.001)));
 total = time() - starttime;
 
+
 # Given the equilibrium interest rate, get the distribution
-K, kprime, marginal_k, StDist, Γ, Cold = K_Agg(Rstar_Aiyagari,wage(Rstar_Aiyagari),par,mpar,Π,meshes,gri)
-figure1 = plot(gri.k, marginal_k)
-xlabel!("Assets")
-ylabel!("Share of households")
+K, kprime, marginal_k, StDist, Γ, Cold = K_Agg(Rstar_Aiyagari,wage(Kdemand(Rstar_Aiyagari)),par,mpar,Π,meshes,gri)
+figure1 = plot(gri.k, marginal_k);
+xlabel!("Assets");
+ylabel!("Share of households");
 display(figure1)
 
 
