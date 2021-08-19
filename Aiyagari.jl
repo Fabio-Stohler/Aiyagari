@@ -10,7 +10,7 @@ cd("C:/Users/fasto/Dropbox/Desktop/Computational Macro/Julia/Aiyagari/")
     nk = 100        # Number of points on the asset grid
     nz = 7          # Number of points on the log-productivity grid
     crit = 1.0e-8   # Numerical precision
-    maxk = 30       # Maximum assets (ensure large enough!)
+    maxk = 35       # Maximum assets (ensure large enough!)
     mink = 0        # Minimum assets (equal to borrowing limit)
 end
 mpar = NumericalParameters();
@@ -27,7 +27,7 @@ par = EconomicParameters();
 
 ## 2. Grids and transitions
 ρ = 0.6; # Persistence of labor income
-σ = 0.4; # Volatility of labor income
+σ = 0.2; # Volatility of labor income
 mc = tauchen(mpar.nz, ρ, σ, 0, 2);
 Π  = mc.p;
 
