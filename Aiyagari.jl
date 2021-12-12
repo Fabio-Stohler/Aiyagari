@@ -9,7 +9,7 @@ cd("C:/Users/fasto/Dropbox/Desktop/Computational Macro/Julia/Aiyagari/")
 @with_kw struct NumericalParameters
     nk = 100        # Number of points on the asset grid
     nz = 7          # Number of points on the log-productivity grid
-    crit = 1.0e-8   # Numerical precision
+    crit = 1.0e-3   # Numerical precision
     maxk = 35       # Maximum assets (ensure large enough!)
     mink = 0        # Minimum assets (equal to borrowing limit)
 end
