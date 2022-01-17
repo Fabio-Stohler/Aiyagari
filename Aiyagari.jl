@@ -2,8 +2,8 @@ using Parameters: start
 using Parameters, Plots, Setfield, Interpolations, Random, Roots
 using QuantEcon, LinearAlgebra
 ## 1. Define parameters
-include("C:/Users/fasto/Dropbox/Desktop/Computational Macro/Julia/Aiyagari/Functions/K_Agg.jl")
-cd("C:/Users/fasto/Dropbox/Desktop/Computational Macro/Julia/Aiyagari/")
+include("./Functions/K_Agg.jl")
+#cd("C:/Users/fasto/Dropbox/Desktop/Computational Macro/Julia/Aiyagari/")
 
 
 @with_kw struct NumericalParameters
